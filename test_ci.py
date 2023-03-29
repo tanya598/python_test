@@ -1,46 +1,46 @@
-# import pytest
-#
-# @pytest.fixture
-# def input_lines():
-#     return [
-#         'this is an example line\n',
-#         'this is another line\n',
-#         'yet another line with the example keyword\n',
-#         'this line has nothing of interest\n'
-#     ]
-#
-# @pytest.fixture
-# def expected_output():
-#     return [
-#         'this is an example line\n',
-#         'yet another line with the example keyword\n'
-#     ]
-#
-# @pytest.fixture
-# def input_file(tmp_path, input_lines):
-#     file_path = tmp_path / 'input.txt'
-#     with open(file_path, 'w') as f:
-#         f.writelines(input_lines)
-#     return file_path
-#
-# @pytest.fixture
-# def output_file(tmp_path):
-#     return tmp_path / 'filtered.txt'
-#
-# def test_filter_lines(input_file, output_file):
-#     keyword = 'example'
-#     with open(input_file, 'r') as input_file:
-#         input_lines = input_file.readlines()
-#
-#     filtered_lines = [line for line in input_lines if keyword in line]
-#
-#     with open(output_file, 'w') as output_file:
-#         output_file.writelines(filtered_lines)
-#
-#     with open(output_file, 'r') as output_file:
-#         output_lines = output_file.readlines()
-#
-#     assert output_lines == expected_output
+import pytest
+
+@pytest.fixture
+def input_lines():
+    return [
+        'this is an example line\n',
+        'this is another line\n',
+        'yet another line with the example keyword\n',
+        'this line has nothing of interest\n'
+    ]
+
+@pytest.fixture
+def expected_output():
+    return [
+        'this is an example line\n',
+        'yet another line with the example keyword\n'
+    ]
+
+@pytest.fixture
+def input_file(tmp_path, input_lines):
+    file_path = tmp_path / 'input.txt'
+    with open(file_path, 'w') as f:
+        f.writelines(input_lines)
+    return file_path
+
+@pytest.fixture
+def output_file(tmp_path):
+    return tmp_path / 'filtered.txt'
+
+def test_filter_lines(input_file, output_file):
+    keyword = 'example'
+    with open(input_file, 'r') as input_file:
+        input_lines = input_file.readlines()
+
+    filtered_lines = [line for line in input_lines if keyword in line]
+
+    with open(output_file, 'w') as output_file:
+        output_file.writelines(filtered_lines)
+
+    with open(output_file, 'r') as output_file:
+        output_lines = output_file.readlines()
+
+    assert output_lines == expected_output
 
 
 import os
